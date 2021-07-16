@@ -1,15 +1,10 @@
 
-tutorial:
-  ntserver:
-    address: 0.0.0.0:9090
-    is_ssl: false
-    cert_file: ssl/server.crt
-    key_file: ssl/server.pem
 
-  ntclient:
-    # Call direct thrift-go
-    address: localhost:9090
-    # Call via thrift-haproxy
-    #address: localhost:9000
-    is_ssl: false
+testdb:
+  mongodb:
+    uri: mongodb://nghiatc:pwtest123@localhost:27017/testdb?authSource=admin&retryWrites=true&retryReads=true
+    uri-write: mongodb://nghiatc:pwtest123@localhost:27017/testdb?authSource=admin&retryWrites=true&retryReads=true&maxPoolSize=100&maxIdleTimeMS=60000
+    uri-read: mongodb://nghiatc:pwtest123@localhost:27017/testdb?authSource=admin&retryWrites=true&retryReads=true&maxPoolSize=200&maxIdleTimeMS=60000
+    uri-repl: mongodb://nghiatc:pwtest123@db1:27017,db2:27017,db3:27017/testdb?authSource=admin&replicaSet=rs1&retryWrites=true&retryReads=true
+
 

@@ -22,5 +22,6 @@ func main() {
 	fmt.Println("Hello world...")
 
 	gmongo.InitMongo()
+	defer gmongo.MClose()
 
 }
