@@ -15,18 +15,18 @@ var TestDB *mongo.Database
 func InitMongo() {
 	// Set client options
 	// https://docs.mongodb.com/manual/reference/connection-string/
-	clientOptions := options.Client().ApplyURI("mongodb://nghiatc:pwtest123@localhost:27017/testdb?authSource=admin&retryWrites=true&retryReads=true&maxPoolSize=100&maxIdleTimeMS=60000")
+	clientOptions := options.Client().ApplyURI("mongodb://nghiatc:pwtest123@localhost:27017/testdb?authSource=admin&retryWrites=true&retryReads=true&maxPoolSize=10&maxIdleTimeMS=60000")
 
 	// Connect to MongoDB
 	var err error
-	MClient, err = mongo.Connect(context.TODO(), clientOptions)
+	MClient, err = mongo.Connect(context.Background(), clientOptions)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Check the connection
-	err = MClient.Ping(context.TODO(), nil)
+	err = MClient.Ping(context.Background(), nil)
 
 	if err != nil {
 		log.Fatal(err)
@@ -39,6 +39,6 @@ func InitMongo() {
 }
 
 func MClose() {
-	MClient.Disconnect(context.TODO())
+	MClient.Disconnect(context.Background())
 	fmt.Println("Disconnect MongoDB!")
 }
