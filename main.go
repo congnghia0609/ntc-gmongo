@@ -6,6 +6,7 @@ import (
 	"runtime"
 
 	"github.com/congnghia0609/ntc-gmongo/gconf"
+	"github.com/congnghia0609/ntc-gmongo/gmongo"
 )
 
 func InitGConf() {
@@ -19,5 +20,7 @@ func main() {
 	InitGConf()
 
 	fmt.Println("Hello world...")
+
+	gmongo.InitMongo()
 
 }
