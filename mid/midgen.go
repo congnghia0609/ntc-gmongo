@@ -2,7 +2,6 @@ package mid
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 
@@ -34,7 +33,7 @@ func GetNext(name string) (int64, error) {
 
 	collection := gmongo.TestDB.Collection(tableName)
 	err := collection.FindOneAndUpdate(context.Background(), filter, update, &opt).Decode(&idgen)
-	log.Println(err)
+	// log.Println(err)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			return 1, nil
@@ -44,9 +43,9 @@ func GetNext(name string) (int64, error) {
 		}
 	}
 
-	jidgen, _ := json.Marshal(idgen)
-	fmt.Printf("idgen = %s\n", string(jidgen))
-	fmt.Println(idgen)
+	// jidgen, _ := json.Marshal(idgen)
+	// fmt.Printf("idgen = %s\n", string(jidgen))
+	// fmt.Println(idgen)
 
 	return idgen.Seq, nil
 }

@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+	"os/signal"
 	"path/filepath"
 	"runtime"
 
@@ -25,11 +28,19 @@ func main() {
 	gmongo.InitMongo()
 	defer gmongo.MClose()
 
-	// id, _ := mid.GetNext("bbb")
-	// fmt.Println("id =", id)
-	// rs, _ := mid.ResetID("bbb", 0)
+	ida, _ := mid.GetNext("aaa")
+	fmt.Println("ida =", ida)
+	// rs, _ := mid.ResetID("aaa", 0)
 	// fmt.Println("rs =", rs)
 
-	id, _ := mid.GetNext("bbb")
-	fmt.Println("id =", id)
+	idb, _ := mid.GetNext("bbb")
+	fmt.Println("idb =", idb)
+
+	// Hang thread Main.
+	c := make(chan os.Signal, 1)
+	// We'll accept graceful shutdowns when quit via SIGINT (Ctrl+C) SIGKILL, SIGQUIT or SIGTERM (Ctrl+/) will not be caught.
+	signal.Notify(c, os.Interrupt)
+	// Block until we receive our signal.
+	<-c
+	log.Println("################# End Main #################")
 }
