@@ -1,3 +1,6 @@
+//Author: nghiatc
+//Since: Jul 15, 2021
+
 package gconf
 
 import (
